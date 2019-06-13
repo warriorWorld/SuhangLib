@@ -1,4 +1,4 @@
-package com.insightsurface.notebook.main;
+package com.insightsurface.notebook.business.main;
 
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.insightsurface.notebook.R;
-import com.insightsurface.notebook.dialog.FingerprintDialogFragment;
+import com.insightsurface.notebook.widget.dialog.FingerprintDialogFragment;
 
 import java.security.KeyStore;
 

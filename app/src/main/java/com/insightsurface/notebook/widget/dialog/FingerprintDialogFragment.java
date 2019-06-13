@@ -1,4 +1,4 @@
-package com.insightsurface.notebook.dialog;
+package com.insightsurface.notebook.widget.dialog;
 
 import android.annotation.TargetApi;
 import android.app.DialogFragment;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.insightsurface.notebook.R;
-import com.insightsurface.notebook.main.LoginActivity;
+import com.insightsurface.notebook.business.main.LoginActivity;
 
 import javax.crypto.Cipher;
 

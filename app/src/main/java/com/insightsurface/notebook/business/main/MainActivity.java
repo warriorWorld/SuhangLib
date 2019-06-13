@@ -1,4 +1,4 @@
-package com.insightsurface.notebook.main;
+package com.insightsurface.notebook.business.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
