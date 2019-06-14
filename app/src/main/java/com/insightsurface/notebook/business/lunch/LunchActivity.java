@@ -13,13 +13,16 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetDataCallback;
+import com.avos.avoscloud.ProgressCallback;
 import com.insightsurface.notebook.R;
 import com.insightsurface.notebook.base.BaseActivity;
 import com.insightsurface.notebook.business.main.MainActivity;
 import com.insightsurface.notebook.config.Configure;
 import com.insightsurface.notebook.config.ShareKeys;
 import com.insightsurface.notebook.listener.OnDialogClickListener;
+import com.insightsurface.notebook.utils.ActivityPoor;
 import com.insightsurface.notebook.utils.BaseParameterUtil;
+import com.insightsurface.notebook.utils.FileSpider;
 import com.insightsurface.notebook.utils.LeanCloundUtil;
 import com.insightsurface.notebook.utils.SharedPreferencesUtils;
 import com.insightsurface.notebook.widget.dialog.DownloadDialog;
@@ -43,7 +46,6 @@ public class LunchActivity extends BaseActivity implements View.OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initUI();
         BaseParameterUtil.getInstance();
         doGetVersionInfo();
     }
@@ -175,7 +177,7 @@ public class LunchActivity extends BaseActivity implements View.OnClickListener,
                         downloadDialog.dismiss();
                     }
                     if (LeanCloundUtil.handleLeanResult(LunchActivity.this, e)) {
-                        File apkFile = FileSpider.getInstance().byte2File(bytes, filePath, "manga_reader.apk");
+                        File apkFile = FileSpider.getInstance().byte2File(bytes, filePath, "notebook.apk");
 
                         Intent intent = new Intent();
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -230,8 +232,8 @@ public class LunchActivity extends BaseActivity implements View.OnClickListener,
     public void onPermissionsDenied(int requestCode, List<String> perms) {
 //        baseToast.showToast(getResources().getString(R.string.no_permissions), true);
         if (Configure.PERMISSION_FILE_REQUST_CODE == requestCode) {
-            MangaDialog peanutDialog = new MangaDialog(LunchActivity.this);
-            peanutDialog.setOnPeanutDialogClickListener(new MangaDialog.OnPeanutDialogClickListener() {
+            NormalDialog peanutDialog = new NormalDialog(LunchActivity.this);
+            peanutDialog.setOnDialogClickListener(new OnDialogClickListener() {
                 @Override
                 public void onOkClick() {
                     ActivityPoor.finishAllActivity();
