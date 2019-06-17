@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.insightsurface.notebook.R;
+import com.insightsurface.notebook.base.BaseActivity;
+import com.insightsurface.notebook.utils.ActivityPoor;
 import com.insightsurface.notebook.widget.dialog.FingerprintDialogFragment;
 
 import java.security.KeyStore;
@@ -20,7 +22,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity  {
 
     private static final String DEFAULT_KEY_NAME = "default_key";
 
@@ -29,11 +31,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         if (supportFingerprint()) {
             initKey();
             initCipher();
         }
+        hideBaseTopBar();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_login;
     }
 
     public boolean supportFingerprint() {
@@ -88,6 +95,11 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityPoor.finishAllActivity();
     }
 
     private void showFingerPrintDialog(Cipher cipher) {

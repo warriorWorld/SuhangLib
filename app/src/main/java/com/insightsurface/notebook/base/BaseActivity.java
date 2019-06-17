@@ -216,7 +216,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ScreenLi
 
     @Override
     public void onScreenOff() {
-        if (this instanceof LunchActivity) {
+        if (this instanceof LunchActivity||this instanceof LoginActivity) {
 
         } else {
             Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
