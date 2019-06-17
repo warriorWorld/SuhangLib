@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.insightsurface.notebook.R;
+import com.insightsurface.notebook.bean.LoginBean;
+import com.insightsurface.notebook.business.lunch.LunchActivity;
+import com.insightsurface.notebook.business.main.LoginActivity;
 import com.insightsurface.notebook.eventbus.EventBusEvent;
+import com.insightsurface.notebook.listener.ScreenListener;
 import com.insightsurface.notebook.utils.ActivityPoor;
 import com.insightsurface.notebook.widget.bar.TopBar;
 import com.insightsurface.notebook.widget.toast.EasyToast;
@@ -23,16 +28,15 @@ import com.insightsurface.notebook.widget.toast.EasyToast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.HashMap;
-
 
 /**
  * 作者：苏航 on 2016/10/17 11:56
  * 邮箱：772192594@qq.com
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements ScreenListener.ScreenStateListener {
     protected TopBar baseTopBar;
     protected EasyToast baseToast;
+    private ScreenListener screenListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         ActivityPoor.addActivity(this);
         setStatusTextColor();
+        // 启动监听锁屏的广播
+        screenListener = new ScreenListener(this);
+        screenListener.begin(this);
     }
 
     protected void setStatusTextColor() {
@@ -199,5 +206,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 每次必须取消订阅
         EventBus.getDefault().unregister(this);
         ActivityPoor.finishSingleActivity(this);
+        screenListener.unregisterListener();
+    }
+
+    @Override
+    public void onScreenOn() {
+
+    }
+
+    @Override
+    public void onScreenOff() {
+        if (this instanceof LunchActivity) {
+
+        } else {
+            Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onUserPresent() {
+
     }
 }

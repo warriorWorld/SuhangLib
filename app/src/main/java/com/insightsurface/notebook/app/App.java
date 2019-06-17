@@ -1,11 +1,16 @@
 package com.insightsurface.notebook.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.avos.avoscloud.AVOSCloud;
+import com.insightsurface.notebook.business.main.LoginActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -23,8 +28,51 @@ public class App extends Application {
         initLeanCloud();
         initUserInfo();
         dealFileUriExposedException();
+        registerActivityLifecycle();
     }
 
+    private void registerActivityLifecycle() {
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                Log.i("Lifecycle", "Created" + activity);
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                Log.i("bo", "Started" + activity);
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+//                if (isBackGround) {
+//                    isBackGround = false;
+                Log.i("Lifecycle", "APP回到了前台");
+//                    doStatistics("front");
+//                }
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+                Log.i("Lifecycle", "Paused" + activity);
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                Log.i("Lifecycle", "Stopped" + activity);
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+                Log.i("Lifecycle", "SaveInstance" + activity);
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                Log.i("Lifecycle", "destroyed" + activity);
+            }
+        });
+    }
 
     private void dealFileUriExposedException() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
