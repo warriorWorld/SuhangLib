@@ -13,6 +13,8 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SignUpCallback;
 import com.insightsurface.notebook.R;
 import com.insightsurface.notebook.base.BaseActivity;
+import com.insightsurface.notebook.utils.MatchStringUtil;
+import com.insightsurface.notebook.utils.SingleLoadBarUtil;
 
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
@@ -28,7 +30,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         initUI();
     }
 
-    private void initUI() {
+    @Override
+    protected void initUI() {
+        super.initUI();
         crossIv = (ImageView) findViewById(R.id.cross_iv);
         userIdEt = (EditText) findViewById(R.id.user_id_et);
         emailEt = (EditText) findViewById(R.id.email_et);

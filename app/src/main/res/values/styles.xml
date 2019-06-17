@@ -16,4 +16,8 @@
         </item>
         <item name="android:progressDrawable">@drawable/shape_progressbar_mini</item>
     </style>
+    <style name="FloatingStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/tag_blue</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

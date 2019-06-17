@@ -13,17 +13,14 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.RequestPasswordResetCallback;
-import com.truthower.suhang.mangareader.R;
-import com.truthower.suhang.mangareader.base.BaseActivity;
-import com.truthower.suhang.mangareader.bean.LoginBean;
-import com.truthower.suhang.mangareader.config.ShareKeys;
-import com.truthower.suhang.mangareader.listener.OnEditResultListener;
-import com.truthower.suhang.mangareader.utils.LeanCloundUtil;
-import com.truthower.suhang.mangareader.utils.SharedPreferencesUtils;
-import com.truthower.suhang.mangareader.widget.dialog.MangaDialog;
-import com.truthower.suhang.mangareader.widget.dialog.MangaEditDialog;
-import com.truthower.suhang.mangareader.widget.dialog.SingleLoadBarUtil;
-import com.truthower.suhang.mangareader.widget.edittext.MyEdittext;
+import com.insightsurface.notebook.R;
+import com.insightsurface.notebook.base.BaseActivity;
+import com.insightsurface.notebook.bean.LoginBean;
+import com.insightsurface.notebook.listener.OnEditResultListener;
+import com.insightsurface.notebook.utils.LeanCloundUtil;
+import com.insightsurface.notebook.utils.SingleLoadBarUtil;
+import com.insightsurface.notebook.widget.dialog.MangaEditDialog;
+import com.insightsurface.notebook.widget.text.MyEdittext;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -43,14 +40,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (!TextUtils.isEmpty(toast)) {
             baseToast.showToast(toast);
         }
-        if (!SharedPreferencesUtils.getBooleanSharedPreferencesData(this, ShareKeys.CLOSE_TUTORIAL, true)) {
-            MangaDialog dialog = new MangaDialog(this);
-            dialog.show();
-            dialog.setTitle("教程");
-            dialog.setMessage("1,登录后就可以把漫画加入收藏和正在追更了,很方便的." +
-                    "\n2,没有账号可以点击下边的注册按钮" +
-                    "\n2,我希望你最好注册下,谢谢.");
-        }
     }
 
     @Override
@@ -61,7 +50,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    private void initUI() {
+    @Override
+    protected void initUI() {
+        super.initUI();
         crossIv = (ImageView) findViewById(R.id.cross_iv);
         userMet = (MyEdittext) findViewById(R.id.user_met);
         userMet.setHint("用户名");

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparency">#00000000</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="main_text_color">#12274D</color>
     <color name="main_text_color_gray">#8912274d</color>
     <color name="white">#ffffff</color>
+    <color name="tag_blue">#94b1d4</color>
     <color name="main_gray">#DAC5C3</color>
     <color name="divide">#f7f7f7</color>
+    <color name="divide_line">#e1e1e1</color>
 </resources>
