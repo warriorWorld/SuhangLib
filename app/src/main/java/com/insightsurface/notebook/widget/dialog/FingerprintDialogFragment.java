@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.insightsurface.notebook.R;
-import com.insightsurface.notebook.business.main.LoginActivity;
+import com.insightsurface.notebook.business.main.FingerPrintActivity;
 
 import javax.crypto.Cipher;
 
@@ -27,7 +27,7 @@ public class FingerprintDialogFragment extends DialogFragment {
 
     private Cipher mCipher;
 
-    private LoginActivity mActivity;
+    private FingerPrintActivity mActivity;
 
     private TextView errorMsg;
 
@@ -43,7 +43,7 @@ public class FingerprintDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = (LoginActivity) getActivity();
+        mActivity = (FingerPrintActivity) getActivity();
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import com.insightsurface.notebook.business.main.LoginActivity;
+import com.insightsurface.notebook.business.main.FingerPrintActivity;
 import com.insightsurface.notebook.config.ShareKeys;
 import com.insightsurface.notebook.utils.ShareObjUtil;
 
@@ -80,7 +80,7 @@ public class LoginBean extends LeanBaseBean {
 
     public String getUserName(Activity context) {
         if (TextUtils.isEmpty(userName)) {
-            Intent intent = new Intent(context, LoginActivity.class);
+            Intent intent = new Intent(context, FingerPrintActivity.class);
             context.startActivity(intent);
             return "";
         }

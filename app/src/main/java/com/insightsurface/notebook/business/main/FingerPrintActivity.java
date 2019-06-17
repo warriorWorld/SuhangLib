@@ -22,7 +22,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class LoginActivity extends BaseActivity  {
+public class FingerPrintActivity extends BaseActivity  {
 
     private static final String DEFAULT_KEY_NAME = "default_key";
 

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.insightsurface.notebook.R;
-import com.insightsurface.notebook.bean.LoginBean;
 import com.insightsurface.notebook.business.lunch.LunchActivity;
-import com.insightsurface.notebook.business.main.LoginActivity;
+import com.insightsurface.notebook.business.main.FingerPrintActivity;
 import com.insightsurface.notebook.eventbus.EventBusEvent;
 import com.insightsurface.notebook.listener.ScreenListener;
 import com.insightsurface.notebook.utils.ActivityPoor;
@@ -216,10 +214,10 @@ public abstract class BaseActivity extends AppCompatActivity implements ScreenLi
 
     @Override
     public void onScreenOff() {
-        if (this instanceof LunchActivity||this instanceof LoginActivity) {
+        if (this instanceof LunchActivity||this instanceof FingerPrintActivity) {
 
         } else {
-            Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+            Intent intent = new Intent(BaseActivity.this, FingerPrintActivity.class);
             startActivity(intent);
         }
     }

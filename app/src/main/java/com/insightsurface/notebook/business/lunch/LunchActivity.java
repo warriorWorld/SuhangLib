@@ -16,8 +16,7 @@ import com.avos.avoscloud.GetDataCallback;
 import com.avos.avoscloud.ProgressCallback;
 import com.insightsurface.notebook.R;
 import com.insightsurface.notebook.base.BaseActivity;
-import com.insightsurface.notebook.business.main.LoginActivity;
-import com.insightsurface.notebook.business.main.MainActivity;
+import com.insightsurface.notebook.business.main.FingerPrintActivity;
 import com.insightsurface.notebook.config.Configure;
 import com.insightsurface.notebook.config.ShareKeys;
 import com.insightsurface.notebook.listener.OnDialogClickListener;
@@ -111,7 +110,7 @@ public class LunchActivity extends BaseActivity implements View.OnClickListener,
         if (isFinishing()) {
             return;
         }
-        Intent intent = new Intent(LunchActivity.this, LoginActivity.class);
+        Intent intent = new Intent(LunchActivity.this, FingerPrintActivity.class);
         startActivity(intent);
         this.finish();
     }
