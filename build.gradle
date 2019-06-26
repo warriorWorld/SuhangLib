@@ -19,6 +19,8 @@ buildscript {
 
 allprojects {
     repositories {
+        //下拉刷新的
+        maven { url "https://jitpack.io" }
         google()
         jcenter()
         //这里是 LeanCloud 的包仓库

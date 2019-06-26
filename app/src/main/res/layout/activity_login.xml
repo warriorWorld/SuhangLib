@@ -22,23 +22,23 @@
         android:layout_marginTop="40dp"
         android:src="@drawable/notepad"/>
 
-    <com.insightsurface.notebook.widget.text.MyEdittext
+    <com.insightsurface.lib.widget.text.MyEdittext
         android:id="@+id/user_met"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/xhh_icon_iv"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="38dp"></com.insightsurface.notebook.widget.text.MyEdittext>
+        android:layout_marginTop="38dp"></com.insightsurface.lib.widget.text.MyEdittext>
 
-    <com.insightsurface.notebook.widget.text.MyEdittext
+    <com.insightsurface.lib.widget.text.MyEdittext
         android:id="@+id/password_met"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_met"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="6dp"></com.insightsurface.notebook.widget.text.MyEdittext>
+        android:layout_marginTop="6dp"></com.insightsurface.lib.widget.text.MyEdittext>
 
     <RelativeLayout
         android:layout_width="match_parent"
