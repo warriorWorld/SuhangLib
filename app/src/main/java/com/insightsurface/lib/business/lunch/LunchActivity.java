@@ -32,7 +32,7 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class LunchActivity extends BaseActivity implements View.OnClickListener,
+public class LunchActivity extends BaseActivity implements
         EasyPermissions.PermissionCallbacks {
     private String versionName, msg;
     private int versionCode;
@@ -206,12 +206,6 @@ public class LunchActivity extends BaseActivity implements View.OnClickListener,
         }
         downloadDialog.show();
         downloadDialog.setCancelable(false);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-        }
     }
 
     @Override

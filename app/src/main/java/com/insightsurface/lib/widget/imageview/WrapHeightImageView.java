@@ -19,34 +19,32 @@ public class WrapHeightImageView extends android.support.v7.widget.AppCompatImag
      */
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-                    post(new Runnable() {
-                        @Override
-                        public void run() {
-                            ViewGroup.LayoutParams vgl = getLayoutParams();
-                            if (mBitmap == null) {
-                                return;
-                            }
-                            //获取bitmap的宽度
-                            float bitWidth = mBitmap.getWidth();
-                            //获取bitmap的宽度
-                            float bithight = mBitmap.getHeight();
-
-                            //计算出图片的宽高比，然后按照图片的比列去缩放图片
-                            float bitScalew = bitWidth / bithight;
-                            // 高按照比例计算
-                            vgl.width = (int) getMeasuredWidth();
-                            vgl.height = (int) (getMeasuredWidth() / bitScalew);
-                            //设置图片充满ImageView控件
-                            setScaleType(ScaleType.FIT_XY);
-                            //等比例缩放
-                            setAdjustViewBounds(true);
-                            setLayoutParams(vgl);
-                            setImageBitmap(mBitmap);
+            if (msg.what == 0) {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ViewGroup.LayoutParams vgl = getLayoutParams();
+                        if (mBitmap == null) {
+                            return;
                         }
-                    });
-                    break;
+                        //获取bitmap的宽度
+                        float bitWidth = mBitmap.getWidth();
+                        //获取bitmap的宽度
+                        float bithight = mBitmap.getHeight();
+
+                        //计算出图片的宽高比，然后按照图片的比列去缩放图片
+                        float bitScalew = bitWidth / bithight;
+                        // 高按照比例计算
+                        vgl.width = (int) getMeasuredWidth();
+                        vgl.height = (int) (getMeasuredWidth() / bitScalew);
+                        //设置图片充满ImageView控件
+                        setScaleType(ScaleType.FIT_XY);
+                        //等比例缩放
+                        setAdjustViewBounds(true);
+                        setLayoutParams(vgl);
+                        setImageBitmap(mBitmap);
+                    }
+                });
             }
         }
     };

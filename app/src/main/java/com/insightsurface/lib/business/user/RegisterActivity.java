@@ -100,15 +100,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.cross_iv:
-                RegisterActivity.this.finish();
-                break;
-            case R.id.register_btn:
-                if (checkData()) {
-                    doRegister();
-                }
-                break;
+        int i = v.getId();
+        if (i == R.id.cross_iv) {
+            RegisterActivity.this.finish();
+        } else if (i == R.id.register_btn) {
+            if (checkData()) {
+                doRegister();
+            }
         }
     }
 }

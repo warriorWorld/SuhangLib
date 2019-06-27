@@ -80,10 +80,8 @@ public class EditDialog extends Dialog implements View.OnClickListener {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 //因为DOWN和UP都算回车 所以这样写 避免调用两次
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_ENTER:
-                            inputEnd();
-                            break;
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        inputEnd();
                     }
                 }
                 return false;
@@ -167,19 +165,16 @@ public class EditDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.cross_iv:
-                dismiss();
-                break;
-            case R.id.cancel_tv:
-                dismiss();
-                if (null != onEditResultListener) {
-                    onEditResultListener.onCancelClick();
-                }
-                break;
-            case R.id.ok_tv:
-                inputEnd();
-                break;
+        int i = v.getId();
+        if (i == R.id.cross_iv) {
+            dismiss();
+        } else if (i == R.id.cancel_tv) {
+            dismiss();
+            if (null != onEditResultListener) {
+                onEditResultListener.onCancelClick();
+            }
+        } else if (i == R.id.ok_tv) {
+            inputEnd();
         }
     }
 

@@ -64,12 +64,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 //因为DOWN和UP都算回车 所以这样写 避免调用两次
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_ENTER:
-                            if (checkData()) {
-                                doLogin();
-                            }
-                            break;
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        if (checkData()) {
+                            doLogin();
+                        }
                     }
                 }
                 return false;
@@ -155,21 +153,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         Intent intent = null;
-        switch (v.getId()) {
-            case R.id.login_btn:
-                if (checkData()) {
-                    doLogin();
-                }
-                break;
-            case R.id.cross_iv:
-                LoginActivity.this.finish();
-                break;
-            case R.id.register_now_tv:
-                intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                break;
-            case R.id.forgot_psd_tv:
-                showResetPsdDialog();
-                break;
+        int i = v.getId();
+        if (i == R.id.login_btn) {
+            if (checkData()) {
+                doLogin();
+            }
+        } else if (i == R.id.cross_iv) {
+            LoginActivity.this.finish();
+        } else if (i == R.id.register_now_tv) {
+            intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        } else if (i == R.id.forgot_psd_tv) {
+            showResetPsdDialog();
         }
         if (null != intent) {
             startActivity(intent);

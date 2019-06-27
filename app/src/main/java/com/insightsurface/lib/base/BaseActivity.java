@@ -178,14 +178,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     @Subscribe
     public void onEventMainThread(EventBusEvent event) {
-        if (null == event)
-            return;
-        Intent intent = null;
-        switch (event.getEventType()) {
-        }
-        if (null != intent) {
-            startActivity(intent);
-        }
     }
 
     @Override

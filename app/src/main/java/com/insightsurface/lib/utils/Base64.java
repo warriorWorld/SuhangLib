@@ -396,13 +396,8 @@ public class Base64 {
 		int bytesCopied = 0;
 
 		for (int i = 0; i < data.length; i++) {
-			switch (data[i]) {
-			case (byte) ' ':
-			case (byte) '\n':
-			case (byte) '\r':
-			case (byte) '\t':
-				break;
-			default:
+			if (data[i] == (byte) ' ' || data[i] == (byte) '\n' || data[i] == (byte) '\r' || data[i] == (byte) '\t') {
+			} else {
 				groomedData[bytesCopied++] = data[i];
 			}
 		}
