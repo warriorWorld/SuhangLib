@@ -91,7 +91,7 @@ public class WebFragment extends BaseRefreshFragment {
 
             @Override
             public void onTitleClick() {
-                if (Configure.IS_TEST) {
+                if (Configure.isTest(getActivity())) {
                     NormalDialog dialog = new NormalDialog(getActivity());
                     dialog.setOnDialogClickListener(new OnDialogClickListener() {
                         @Override
@@ -123,7 +123,7 @@ public class WebFragment extends BaseRefreshFragment {
 
             @Override
             public void onTitleLongClick() {
-                if (Configure.IS_TEST) {
+                if (Configure.isTest(getActivity())) {
                     EditDialog dialog = new EditDialog(getActivity());
                     dialog.setOnEditResultListener(new OnEditResultListener() {
                         @Override
@@ -181,7 +181,7 @@ public class WebFragment extends BaseRefreshFragment {
             }
         } catch (Exception e) {
             //catch
-            if (Configure.IS_TEST) {
+            if (Configure.isTest(getActivity())) {
                 NormalDialog dialog = new NormalDialog(getActivity());
                 dialog.show();
                 dialog.setTitle(e + "");

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.insightsurface.lib.bean.LoginBean;
+import com.insightsurface.lib.utils.PropertiesUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -25,7 +26,7 @@ public class App extends Application {
         super.onCreate();
         initImageLoader(getApplicationContext());
         initLeanCloud();
-        initUserInfo();
+        initAllInstance();
         dealFileUriExposedException();
         registerActivityLifecycle();
     }
@@ -80,8 +81,9 @@ public class App extends Application {
         }
     }
 
-    private void initUserInfo() {
+    private void initAllInstance() {
         LoginBean.getInstance().setLoginInfo(this, LoginBean.getLoginInfo(this));
+        PropertiesUtil.getInstance(this);
     }
 
     private void initLeanCloud() {
