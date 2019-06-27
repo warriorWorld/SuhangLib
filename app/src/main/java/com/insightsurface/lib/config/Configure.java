@@ -1,8 +1,10 @@
 package com.insightsurface.lib.config;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
+import com.insightsurface.lib.utils.PropertiesUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 /**
@@ -10,7 +12,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
  */
 
 public class Configure {
-    public final static boolean IS_TEST = false;
     final public static String DOWNLOAD_PATH = Environment
             .getExternalStorageDirectory().getAbsolutePath() + "/" + "notebook";
     //数字随便写的  权限request code
@@ -26,4 +27,8 @@ public class Configure {
 //            .showImageOnLoading(R.drawable.spinner_1)
 //            .showImageOnFail(R.drawable.spinner_1)
             .build();
+
+    public static boolean isTest(Context context) {
+        return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("IS_TEST"));
+    }
 }
