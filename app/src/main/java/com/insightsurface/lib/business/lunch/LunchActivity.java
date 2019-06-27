@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
@@ -16,7 +15,6 @@ import com.avos.avoscloud.GetDataCallback;
 import com.avos.avoscloud.ProgressCallback;
 import com.insightsurface.lib.R;
 import com.insightsurface.lib.base.BaseActivity;
-import com.insightsurface.lib.business.main.FingerPrintActivity;
 import com.insightsurface.lib.config.Configure;
 import com.insightsurface.lib.config.ShareKeys;
 import com.insightsurface.lib.listener.OnDialogClickListener;
@@ -110,8 +108,8 @@ public class LunchActivity extends BaseActivity implements View.OnClickListener,
         if (isFinishing()) {
             return;
         }
-        Intent intent = new Intent(LunchActivity.this, FingerPrintActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(LunchActivity.this, FingerPrintActivity.class);
+//        startActivity(intent);
         this.finish();
     }
 

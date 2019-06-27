@@ -60,12 +60,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".business.main.MainActivity"
-            android:launchMode="singleTask"></activity>
-        <activity
-            android:name=".business.main.FingerPrintActivity"
-            android:launchMode="singleTask"></activity>
-        <activity
             android:name=".business.user.RegisterActivity"></activity>
         <activity
             android:name=".business.user.LoginActivity"></activity>

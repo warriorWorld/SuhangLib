@@ -16,7 +16,6 @@ import android.view.WindowManager;
 
 import com.insightsurface.lib.R;
 import com.insightsurface.lib.business.lunch.LunchActivity;
-import com.insightsurface.lib.business.main.FingerPrintActivity;
 import com.insightsurface.lib.eventbus.EventBusEvent;
 import com.insightsurface.lib.listener.ScreenListener;
 import com.insightsurface.lib.utils.ActivityPoor;
@@ -31,10 +30,9 @@ import org.greenrobot.eventbus.Subscribe;
  * 作者：苏航 on 2016/10/17 11:56
  * 邮箱：772192594@qq.com
  */
-public abstract class BaseActivity extends AppCompatActivity implements ScreenListener.ScreenStateListener {
+public abstract class BaseActivity extends AppCompatActivity {
     protected TopBar baseTopBar;
     protected EasyToast baseToast;
-    private ScreenListener screenListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +51,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ScreenLi
         EventBus.getDefault().register(this);
         ActivityPoor.addActivity(this);
         setStatusTextColor();
-        // 启动监听锁屏的广播
-        screenListener = new ScreenListener(this);
-        screenListener.begin(this);
     }
 
     protected void setStatusTextColor() {
@@ -204,26 +199,5 @@ public abstract class BaseActivity extends AppCompatActivity implements ScreenLi
         // 每次必须取消订阅
         EventBus.getDefault().unregister(this);
         ActivityPoor.finishSingleActivity(this);
-        screenListener.unregisterListener();
-    }
-
-    @Override
-    public void onScreenOn() {
-
-    }
-
-    @Override
-    public void onScreenOff() {
-        if (this instanceof LunchActivity||this instanceof FingerPrintActivity) {
-
-        } else {
-            Intent intent = new Intent(BaseActivity.this, FingerPrintActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onUserPresent() {
-
     }
 }

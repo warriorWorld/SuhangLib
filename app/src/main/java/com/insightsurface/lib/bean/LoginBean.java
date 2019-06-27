@@ -2,12 +2,8 @@ package com.insightsurface.lib.bean;/**
  * Created by Administrator on 2016/11/2.
  */
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
 
-import com.insightsurface.lib.business.main.FingerPrintActivity;
 import com.insightsurface.lib.config.ShareKeys;
 import com.insightsurface.lib.utils.ShareObjUtil;
 
@@ -77,16 +73,6 @@ public class LoginBean extends LeanBaseBean {
     public String getUserName() {
         return userName;
     }
-
-    public String getUserName(Activity context) {
-        if (TextUtils.isEmpty(userName)) {
-            Intent intent = new Intent(context, FingerPrintActivity.class);
-            context.startActivity(intent);
-            return "";
-        }
-        return userName;
-    }
-
 
     public String getEmail() {
         return email;
