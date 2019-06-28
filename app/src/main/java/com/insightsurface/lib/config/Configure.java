@@ -32,11 +32,11 @@ public class Configure {
         return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("IS_TEST"));
     }
 
-    public static boolean getLeanCloudId(Context context) {
-        return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("LEANCLOUD_ID"));
+    public static String getLeanCloudId(Context context) {
+        return PropertiesUtil.getInstance(context).getProperty("LEANCLOUD_ID");
     }
 
-    public static boolean getLeanCloudKey(Context context) {
-        return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("LEANCLOUD_KEY"));
+    public static String getLeanCloudKey(Context context) {
+        return PropertiesUtil.getInstance(context).getProperty("LEANCLOUD_KEY");
     }
 }

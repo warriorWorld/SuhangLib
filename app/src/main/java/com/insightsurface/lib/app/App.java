@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.insightsurface.lib.bean.LoginBean;
+import com.insightsurface.lib.config.Configure;
 import com.insightsurface.lib.utils.PropertiesUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -88,7 +89,7 @@ public class App extends Application {
 
     private void initLeanCloud() {
         // 初始化参数依次为 this, AppId, AppKey
-        AVOSCloud.initialize(this, "jVea4vi5Ma4U4i7LbVfIDJEi-gzGzoHsz", "Xin3oGqmeRiIQCm8w2E2q9U6");
+        AVOSCloud.initialize(this, Configure.getLeanCloudId(this), Configure.getLeanCloudKey(this));
         AVOSCloud.setDebugLogEnabled(true);
     }
 
