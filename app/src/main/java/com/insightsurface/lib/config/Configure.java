@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 public class Configure {
     final public static String DOWNLOAD_PATH = Environment
-            .getExternalStorageDirectory().getAbsolutePath() + "/" + "notebook";
+            .getExternalStorageDirectory().getAbsolutePath() + "/" + "Download";
     //数字随便写的  权限request code
     final public static int PERMISSION_CAMERA_REQUST_CODE = 8021;
     final public static int PERMISSION_LOCATION_REQUST_CODE = 8022;
@@ -30,5 +30,13 @@ public class Configure {
 
     public static boolean isTest(Context context) {
         return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("IS_TEST"));
+    }
+
+    public static boolean getLeanCloudId(Context context) {
+        return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("LEANCLOUD_ID"));
+    }
+
+    public static boolean getLeanCloudKey(Context context) {
+        return Boolean.valueOf(PropertiesUtil.getInstance(context).getProperty("LEANCLOUD_KEY"));
     }
 }

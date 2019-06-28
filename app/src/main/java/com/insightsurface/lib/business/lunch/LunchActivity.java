@@ -22,11 +22,13 @@ import com.insightsurface.lib.utils.ActivityPoor;
 import com.insightsurface.lib.utils.BaseParameterUtil;
 import com.insightsurface.lib.utils.FileSpider;
 import com.insightsurface.lib.utils.LeanCloundUtil;
+import com.insightsurface.lib.utils.PropertiesUtil;
 import com.insightsurface.lib.utils.SharedPreferencesUtils;
 import com.insightsurface.lib.widget.dialog.DownloadDialog;
 import com.insightsurface.lib.widget.dialog.NormalDialog;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -108,9 +110,18 @@ public class LunchActivity extends BaseActivity implements
         if (isFinishing()) {
             return;
         }
-//        Intent intent = new Intent(LunchActivity.this, FingerPrintActivity.class);
-//        startActivity(intent);
+        toCertainPage(PropertiesUtil.getInstance(this).getProperty("LUNCH_TARGET"));
         this.finish();
+    }
+
+    private void toCertainPage(String activityName) {
+        Intent intent = null;
+        try {
+            intent = new Intent(this, Class.forName(activityName));
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void showVersionDialog() {
@@ -175,8 +186,8 @@ public class LunchActivity extends BaseActivity implements
                         downloadDialog.dismiss();
                     }
                     if (LeanCloundUtil.handleLeanResult(LunchActivity.this, e)) {
-                        File apkFile = FileSpider.getInstance().byte2File(bytes, filePath, "notebook.apk");
-
+                        File apkFile = FileSpider.getInstance().byte2File(bytes, filePath,
+                                getResources().getString(R.string.app_name_englisth)+".apk");
                         Intent intent = new Intent();
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.setAction("android.intent.action.VIEW");

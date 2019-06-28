@@ -4,10 +4,10 @@ import android.util.Log;
 
 public class Logger {
 	public static void d(String d) {
-		Log.d("notebook", d);
+		Log.d("suhanglib", d);
 	}
 	public static void i(String i) {
-		Log.i("notebook", i);
+		Log.i("suhanglib", i);
 	}
 	public static void d(Double d) {
 		

@@ -23,10 +23,14 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View v = inflater.inflate(R.layout.fragment_only_refresh, container, false);
+        View v = inflater.inflate(getLayoutId(), container, false);
         initUI(v);
         doGetData();
         return v;
+    }
+
+    protected int getLayoutId() {
+        return R.layout.fragment_only_refresh;
     }
 
     protected abstract void doGetData();
@@ -37,7 +41,7 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
 
     protected abstract int getBottomViewId();
 
-    private void initUI(View v) {
+    protected void initUI(View v) {
         refreshBaseTopbar = (TopBar) v.findViewById(R.id.refresh_frgament_topbar);
         refreshBaseTopbar.setOnTopBarClickListener(new TopBar.OnTopBarClickListener() {
             @Override
@@ -55,8 +59,11 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
         });
         swipeToLoadLayout = (SwipeToLoadLayout) v.findViewById(R.id.swipeToLoadLayout);
 
-        ViewGroup containerView = (ViewGroup) v.findViewById(R.id.container_fl);
-        LayoutInflater.from(getActivity()).inflate(getContentLayoutId(), containerView);
+        if (getContentLayoutId()!=0) {
+            ViewGroup containerView = (ViewGroup) v.findViewById(R.id.container_fl);
+            LayoutInflater.from(getActivity()).inflate(getContentLayoutId(), containerView);
+            initFrgmentUI(containerView);
+        }
         if (getTopViewId() != 0) {
             ViewGroup topView = (ViewGroup) v.findViewById(R.id.top_view);
             LayoutInflater.from(getActivity()).inflate(getTopViewId(), topView);
@@ -69,7 +76,6 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
         }
         swipeToLoadLayout.setOnRefreshListener(this);
         swipeToLoadLayout.setOnLoadMoreListener(this);
-        initFrgmentUI(containerView);
     }
 
     protected abstract void initFrgmentUI(ViewGroup view);

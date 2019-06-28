@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +15,6 @@ import android.view.ViewGroup;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-
 
 import com.insightsurface.lib.R;
 import com.insightsurface.lib.base.BaseRefreshFragment;
@@ -24,7 +25,6 @@ import com.insightsurface.lib.listener.OnEditResultListener;
 import com.insightsurface.lib.listener.OnShowFileChooserListener;
 import com.insightsurface.lib.listener.OnUrlChangeListener;
 import com.insightsurface.lib.utils.BaseParameterUtil;
-import com.insightsurface.lib.utils.MatchStringUtil;
 import com.insightsurface.lib.widget.bar.TopBar;
 import com.insightsurface.lib.widget.dialog.EditDialog;
 import com.insightsurface.lib.widget.dialog.NormalDialog;
@@ -41,8 +41,19 @@ public class WebFragment extends BaseRefreshFragment {
     private final static int FILE_CHOOSER_RESULT_CODE = 10000;
 
     @Override
-    protected void initFrgmentUI(ViewGroup view) {
-        myWebView = (MyWebView) view.findViewById(R.id.peanut_web);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_webview;
+    }
+
+    @Override
+    protected void initUI(View view) {
+        super.initUI(view);
+        myWebView = (MyWebView) view.findViewById(R.id.swipe_target);
         refreshBaseTopbar.setTitle("读取中");
         if (hideTopLeft) {
             refreshBaseTopbar.hideLeftButton();
@@ -50,12 +61,7 @@ public class WebFragment extends BaseRefreshFragment {
         myWebView.setOnPeanutWebViewListener(new MyWebView.OnPeanutWebViewListener() {
             @Override
             public void onReceivedTitle(String title) {
-                if (!MatchStringUtil.isChinese(title)) {
-                    refreshBaseTopbar.setTitle(getResources().getString(R.string.app_name));
-                } else {
-                    refreshBaseTopbar.setTitle(title);
-                }
-
+                refreshBaseTopbar.setTitle(title);
             }
         });
         myWebView.setOnUrlChangeListener(new OnUrlChangeListener() {
@@ -146,7 +152,6 @@ public class WebFragment extends BaseRefreshFragment {
         myWebView.getSettings().setUserAgentString(ua + "LOANKEY_ANDROID /" +
                 BaseParameterUtil.getInstance().getAppVersionName(getActivity()));
 
-
         myWebView.setOnAllVersionScrollChangeListener(new OnAllVersionScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -155,6 +160,11 @@ public class WebFragment extends BaseRefreshFragment {
         });
         hideLoadMore();
         init();
+    }
+
+    @Override
+    protected void initFrgmentUI(ViewGroup view) {
+
     }
 
     @Override
@@ -177,7 +187,7 @@ public class WebFragment extends BaseRefreshFragment {
                     getActivity().finish();
                 }
 
-                    myWebView.loadUrl(url);
+                myWebView.loadUrl(url);
             }
         } catch (Exception e) {
             //catch
@@ -241,12 +251,15 @@ public class WebFragment extends BaseRefreshFragment {
     }
 
     private void toggleRefreshEnable(int scrollY) {
-        if (scrollY == 0 ) {
+        if (scrollY == 0) {
             swipeToLoadLayout.setRefreshEnabled(true);
         } else {
             swipeToLoadLayout.setRefreshEnabled(false);
         }
     }
+
+    private String downloadUrl = "";
+
 
     public String getUrl() {
         return url;
@@ -277,7 +290,7 @@ public class WebFragment extends BaseRefreshFragment {
 
     @Override
     protected int getContentLayoutId() {
-        return R.layout.activity_webview;
+        return 0;
     }
 
     public void loadUrl(String url) {
@@ -294,9 +307,5 @@ public class WebFragment extends BaseRefreshFragment {
     @Override
     protected int getBottomViewId() {
         return 0;
-    }
-
-    public void setHideTopLeft(boolean hideTopLeft) {
-        this.hideTopLeft = hideTopLeft;
     }
 }
