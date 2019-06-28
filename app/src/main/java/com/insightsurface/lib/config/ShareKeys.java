@@ -9,4 +9,5 @@ public class ShareKeys {
     public static final String DEVICE_KEY = "device_key";
     public static final String DEVICE_TOKEN_KEY = "device_token_key";
     public static final String IGNORE_THIS_VERSION_KEY = "ignore_this_version_key";
+    public static final String LAST_DRAGVIEW_POSITION = "last_dragview_position";
 }
