@@ -16,11 +16,14 @@ import com.avos.avoscloud.RequestPasswordResetCallback;
 import com.insightsurface.lib.R;
 import com.insightsurface.lib.base.BaseActivity;
 import com.insightsurface.lib.bean.LoginBean;
+import com.insightsurface.lib.eventbus.EventBusEvent;
 import com.insightsurface.lib.listener.OnEditResultListener;
 import com.insightsurface.lib.utils.LeanCloundUtil;
 import com.insightsurface.lib.utils.SingleLoadBarUtil;
 import com.insightsurface.lib.widget.dialog.EditDialog;
 import com.insightsurface.lib.widget.text.MyEdittext;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -110,10 +113,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     public void done(AVUser avUser, AVException e) {
                         SingleLoadBarUtil.getInstance().dismissLoadBar();
                         if (e == null) {
+                            LoginBean.getInstance().setObjectId(avUser.getObjectId());
+                            LoginBean.getInstance().setCreate_at(avUser.getCreatedAt());
                             LoginBean.getInstance().setEmail(LoginActivity.this, avUser.getEmail());
                             LoginBean.getInstance().setUserName(LoginActivity.this, avUser.getUsername());
                             LoginBean.getInstance().setMaster(LoginActivity.this, avUser.getBoolean("master"));
                             LoginBean.getInstance().setCreator(LoginActivity.this, avUser.getBoolean("creator"));
+                            EventBus.getDefault().post(
+                                    new EventBusEvent(EventBusEvent.LOGIN_EVENT));
                             LoginActivity.this.finish();
                         } else {
                             passwordMet.setErrorText(e.getMessage());
