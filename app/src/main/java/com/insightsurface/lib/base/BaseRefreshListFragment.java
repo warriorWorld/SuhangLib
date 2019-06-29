@@ -41,7 +41,7 @@ public abstract class BaseRefreshListFragment extends BaseFragment implements On
 
     protected abstract String getType();
 
-    private void initUI(View v) {
+    protected void initUI(View v) {
         swipeToLoadLayout = (SwipeToLoadLayout) v.findViewById(R.id.swipeToLoadLayout);
         refreshRcv = (RecyclerView) v.findViewById(R.id.swipe_target);
         refreshRcv.setLayoutManager
