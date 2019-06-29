@@ -34,7 +34,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initUI();
         Intent intent = getIntent();
         String toast = intent.getStringExtra("toast");
         if (!TextUtils.isEmpty(toast)) {
