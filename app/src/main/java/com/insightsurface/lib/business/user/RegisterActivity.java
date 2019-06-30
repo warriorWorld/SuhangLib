@@ -92,8 +92,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void doNext() {
         baseToast.showToast("注册成功!");
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-        startActivity(intent);
         this.finish();
     }
 

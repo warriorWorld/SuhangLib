@@ -1,24 +1,21 @@
 package com.insightsurface.lib.base;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.insightsurface.lib.R;
 
 /**
  * 个人信息页
  */
-public abstract class BaseRefreshListFragment extends BaseFragment implements OnRefreshListener,
-        OnLoadMoreListener {
+public abstract class BaseRefreshListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     protected RecyclerView refreshRcv;
-    protected SwipeToLoadLayout swipeToLoadLayout;
+    protected SwipeRefreshLayout swipeToLoadLayout;
     protected int page = 0;
 
     @Override
@@ -42,7 +39,7 @@ public abstract class BaseRefreshListFragment extends BaseFragment implements On
     protected abstract String getType();
 
     protected void initUI(View v) {
-        swipeToLoadLayout = (SwipeToLoadLayout) v.findViewById(R.id.swipeToLoadLayout);
+        swipeToLoadLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeToLoadLayout);
         refreshRcv = (RecyclerView) v.findViewById(R.id.swipe_target);
         refreshRcv.setLayoutManager
                 (new LinearLayoutManager
@@ -51,17 +48,14 @@ public abstract class BaseRefreshListFragment extends BaseFragment implements On
         refreshRcv.setFocusable(false);
         refreshRcv.setHasFixedSize(true);
         swipeToLoadLayout.setOnRefreshListener(this);
-        swipeToLoadLayout.setOnLoadMoreListener(this);
     }
 
     protected abstract void initRec();
 
     protected void noMoreData() {
         swipeToLoadLayout.setRefreshing(false);
-        swipeToLoadLayout.setLoadingMore(false);
     }
 
-    @Override
     public void onLoadMore() {
         page++;
         doGetData();

@@ -1,20 +1,17 @@
 package com.insightsurface.lib.base;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.insightsurface.lib.R;
 
 /**
  * 个人信息页
  */
-public abstract class BaseRefreshActivity extends BaseActivity implements OnRefreshListener,
-        OnLoadMoreListener {
-    protected SwipeToLoadLayout swipeToLoadLayout;
+public abstract class BaseRefreshActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+    protected SwipeRefreshLayout swipeToLoadLayout;
     protected int page = 1;
 
     @Override
@@ -39,7 +36,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements OnRefr
     @Override
     protected void initUI() {
         super.initUI();
-        swipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
+        swipeToLoadLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToLoadLayout);
 
         ViewGroup containerView = (ViewGroup) findViewById(R.id.container_fl);
         LayoutInflater.from(this).inflate(getContentLayoutId(), containerView);
@@ -54,7 +51,6 @@ public abstract class BaseRefreshActivity extends BaseActivity implements OnRefr
             initBottomViewUI(bottomView);
         }
         swipeToLoadLayout.setOnRefreshListener(this);
-        swipeToLoadLayout.setOnLoadMoreListener(this);
         initTargetUI(containerView);
     }
 
@@ -64,16 +60,11 @@ public abstract class BaseRefreshActivity extends BaseActivity implements OnRefr
 
     protected abstract void initBottomViewUI(ViewGroup view);
 
-    protected void hideLoadMore() {
-        swipeToLoadLayout.setLoadMoreEnabled(false);
-    }
 
     protected void noMoreData() {
         swipeToLoadLayout.setRefreshing(false);
-        swipeToLoadLayout.setLoadingMore(false);
     }
 
-    @Override
     public void onLoadMore() {
         page++;
         doGetData();

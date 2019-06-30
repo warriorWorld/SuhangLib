@@ -158,7 +158,6 @@ public class WebFragment extends BaseRefreshFragment {
                 toggleRefreshEnable(scrollY);
             }
         });
-        hideLoadMore();
         init();
     }
 
@@ -252,9 +251,9 @@ public class WebFragment extends BaseRefreshFragment {
 
     private void toggleRefreshEnable(int scrollY) {
         if (scrollY == 0) {
-            swipeToLoadLayout.setRefreshEnabled(true);
+            swipeToLoadLayout.setEnabled(true);
         } else {
-            swipeToLoadLayout.setRefreshEnabled(false);
+            swipeToLoadLayout.setEnabled(false);
         }
     }
 

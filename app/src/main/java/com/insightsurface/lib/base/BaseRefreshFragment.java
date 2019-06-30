@@ -1,23 +1,20 @@
 package com.insightsurface.lib.base;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.insightsurface.lib.R;
 import com.insightsurface.lib.widget.bar.TopBar;
 
 /**
  * 个人信息页
  */
-public abstract class BaseRefreshFragment extends BaseFragment implements OnRefreshListener,
-        OnLoadMoreListener {
+public abstract class BaseRefreshFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     protected TopBar refreshBaseTopbar;
-    protected SwipeToLoadLayout swipeToLoadLayout;
+    protected SwipeRefreshLayout swipeToLoadLayout;
     protected int page = 1;
 
     @Override
@@ -57,9 +54,9 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
             public void onTitleClick() {
             }
         });
-        swipeToLoadLayout = (SwipeToLoadLayout) v.findViewById(R.id.swipeToLoadLayout);
+        swipeToLoadLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeToLoadLayout);
 
-        if (getContentLayoutId()!=0) {
+        if (getContentLayoutId() != 0) {
             ViewGroup containerView = (ViewGroup) v.findViewById(R.id.container_fl);
             LayoutInflater.from(getActivity()).inflate(getContentLayoutId(), containerView);
             initFrgmentUI(containerView);
@@ -75,7 +72,6 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
             initBottomViewUI(bottomView);
         }
         swipeToLoadLayout.setOnRefreshListener(this);
-        swipeToLoadLayout.setOnLoadMoreListener(this);
     }
 
     protected abstract void initFrgmentUI(ViewGroup view);
@@ -88,16 +84,10 @@ public abstract class BaseRefreshFragment extends BaseFragment implements OnRefr
         refreshBaseTopbar.setVisibility(View.GONE);
     }
 
-    protected void hideLoadMore() {
-        swipeToLoadLayout.setLoadMoreEnabled(false);
-    }
-
     protected void noMoreData() {
         swipeToLoadLayout.setRefreshing(false);
-        swipeToLoadLayout.setLoadingMore(false);
     }
 
-    @Override
     public void onLoadMore() {
         page++;
         doGetData();

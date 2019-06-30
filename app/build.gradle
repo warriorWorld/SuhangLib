@@ -31,5 +31,4 @@ dependencies {
     // LeanCloud 基础包
     implementation('cn.leancloud.android:avoscloud-sdk:v4.7.10')
     implementation files('libs/universal-image-loader-1.9.5.jar')
-    implementation 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'
 }

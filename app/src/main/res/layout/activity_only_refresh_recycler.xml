@@ -5,27 +5,15 @@
                 android:layout_height="match_parent"
                 android:background="@color/divide">
 
-    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeToLoadLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/divide">
 
-        <com.aspsine.swipetoloadlayout.SwipeRefreshHeaderLayout
-            android:id="@+id/swipe_refresh_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.aspsine.swipetoloadlayout.SwipeRefreshHeaderLayout>
-
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
-        <com.aspsine.swipetoloadlayout.SwipeLoadMoreFooterLayout
-            android:id="@id/swipe_load_more_footer"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"/>
-    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>
